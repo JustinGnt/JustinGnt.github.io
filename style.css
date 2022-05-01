@@ -1,0 +1,41 @@
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.main-container {
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+
+    margin: 0;
+
+}
+
+.noob-container {       
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 300px;
+    border: 1px dashed black;
+
+    margin-bottom: 400px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.noob {
+    padding-top: 10px;
+ 
+}
+
+.clicks {
+
+    font-size: larger;
+}
+
