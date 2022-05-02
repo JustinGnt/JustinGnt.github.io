@@ -8,6 +8,7 @@ function noobClick() {
 
     var ben = new Audio('audio/ben.mp3')
 
+    // Random colour change interval
     let random16 = Math.floor(Math.random() * 16);
 
     clicks += 1;

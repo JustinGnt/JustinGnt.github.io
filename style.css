@@ -4,7 +4,6 @@ body {
 }
 
 .main-container {
-
     display: flex;
 
     justify-content: center;
@@ -13,7 +12,6 @@ body {
     height: 100vh;
 
     margin: 0;
-
 }
 
 .noob-container {       
@@ -31,11 +29,9 @@ body {
 
 .noob {
     padding-top: 10px;
- 
 }
 
 .clicks {
-
     font-size: larger;
 }
 
