@@ -1,5 +1,4 @@
 
-let max = 1000000;
 let clicks = 0;
 let noobObj = document.querySelector('.clicks');
 
@@ -73,6 +72,9 @@ function noobClick() {
 // Houses all upgrades
 function upgradeFunc(name) {
 
+
+    let max = 1000000;
+
     if (name === "poke" && clicks >= pokeCost) {
         pokeLevel += 1;
         clicks -= pokeCost;
@@ -85,13 +87,10 @@ function upgradeFunc(name) {
     }
 
     if (name === "squeak"  ) {
-        fartSound.load();
+      
         fartSound.play();
         squeakLevel += 1;
         clicks -= squeakCost;
-        if (clicks > max){
-            clicks = max;
-        }
         noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
         squeakCost = squeakCost * 1.33;
         squeaker = squeaker * 1.5;
@@ -99,6 +98,11 @@ function upgradeFunc(name) {
 
             clicks = clicks += squeaker;
             noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
+
+            if (clicks > max){
+                clicks = max - (clicks - 1000000);
+                noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
+            }
 
         }, 100);
 
