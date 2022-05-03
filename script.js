@@ -1,3 +1,5 @@
+
+let max = 1000000;
 let clicks = 0;
 let noobObj = document.querySelector('.clicks');
 
@@ -24,10 +26,12 @@ let robuxLevel = 1;
 
 var seconds = 0;
 
+    // variables for audio
+    var ben = new Audio('audio/ben.mp3');
+    var fartSound = new Audio('audio/fart.mp3');
+
 // Onclick function
 function noobClick() {
-
-    var ben = new Audio('audio/ben.mp3')
 
     // Random colour change interval
     let random16 = Math.floor(Math.random() * 5);
@@ -38,11 +42,13 @@ function noobClick() {
     // Random cursed interval
     let cursedRand = Math.floor(Math.random() * 25 );
 
+    // 
     clicks += pokeStrength;
     noobObj.textContent = "Noob has been clicked: " + Math.ceil(clicks) + " times!";
 
     // Plays "behn" sound
     if (randomBen === 1) {
+        ben.load();
         ben.play();
     }
 
@@ -63,6 +69,8 @@ function noobClick() {
     }
 }
 
+// Main upgrade function
+// Houses all upgrades
 function upgradeFunc(name) {
 
     if (name === "poke" && clicks >= pokeCost) {
@@ -76,9 +84,14 @@ function upgradeFunc(name) {
         pokeDisplay.textContent = "Upgrade \r\n (" + Math.ceil(pokeCost) + " clicks)";
     }
 
-    if (name === "squeak" && clicks >= squeakCost ) {
+    if (name === "squeak"  ) {
+        fartSound.load();
+        fartSound.play();
         squeakLevel += 1;
         clicks -= squeakCost;
+        if (clicks > max){
+            clicks = max;
+        }
         noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
         squeakCost = squeakCost * 1.33;
         squeaker = squeaker * 1.5;
@@ -95,7 +108,7 @@ function upgradeFunc(name) {
 
 
 
-var cancel = setInterval(incrementSeconds, 1000);
+var cancel = setInterval(1, 1000);
 }
 
 // comment
