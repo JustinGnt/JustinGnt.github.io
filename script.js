@@ -1,4 +1,3 @@
-
 let clicks = 0;
 let noobObj = document.querySelector('.clicks');
 
@@ -14,7 +13,10 @@ let robuxCost = 1500
 let squeakCost = 500;
 let pokeCost = 50;
 
-let squeaker = 2;
+let pokeCostMod = 1.25
+let squeakCostMod = 1.25
+
+let squeaker = 1;
 let robux = 6;
 
 let x = 0;
@@ -75,34 +77,39 @@ function upgradeFunc(name) {
 
     let max = 1000000;
 
+
     if (name === "poke" && clicks >= pokeCost) {
+        pokeCostMod = pokeCostMod + (pokeCostMod*0.10);
         pokeLevel += 1;
         clicks -= pokeCost;
         noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
-        pokeCost = pokeCost * 1.45;
+        pokeCost = pokeCost * pokeCostMod;
         pokeStrength = pokeStrength * 1.5;
         
         pokeLvl.textContent = "Poke Stick -- Lvl: " + pokeLevel;
         pokeDisplay.textContent = "Upgrade \r\n (" + Math.ceil(pokeCost) + " clicks)";
     }
 
-    if (name === "squeak"  ) {
-      
+    if (name === "squeak" ) {
+        squeakCostMod = squeakCostMod + (squeakCostMod*0.10);
         fartSound.play();
         squeakLevel += 1;
         clicks -= squeakCost;
         noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
-        squeakCost = squeakCost * 1.33;
+        squeakCost = squeakCost * squeakCostMod;
         squeaker = squeaker * 1.5;
         window.setInterval(function(){
 
-            clicks = clicks += squeaker;
-            noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
+            if (clicks < max){
+                
+                clicks = clicks += squeaker;
+                noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
 
-            if (clicks > max){
-                clicks = max - (clicks - 1000000);
+            } else {
+                clicks = max;
                 noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
             }
+            
 
         }, 100);
 

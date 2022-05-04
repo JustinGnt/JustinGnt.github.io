@@ -7,6 +7,12 @@ body {
   height: 720px;
 }
 
+footer {
+
+  text-align: center;
+
+}
+
 .main-container {
   display: flex;
 
@@ -59,7 +65,6 @@ body {
   flex-wrap: wrap;
   width: 300px;
   height: 300px;
-  border: 1px dashed black;
 
   margin-bottom: 400px;
 
@@ -76,7 +81,7 @@ body {
 .box {
   border: 2px;
   border-color: black;
-  border-style: dashed;
+  border-style: solid;
 
   font-size: small;
 
