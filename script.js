@@ -13,7 +13,10 @@ let robuxCost = 1500
 let squeakCost = 500;
 let pokeCost = 50;
 
-let squeaker = 2;
+let pokeCostMod = 1.25
+let squeakCostMod = 1.25
+
+let squeaker = 1;
 let robux = 6;
 
 let x = 0;
@@ -24,10 +27,12 @@ let robuxLevel = 1;
 
 var seconds = 0;
 
+    // variables for audio
+    var ben = new Audio('audio/ben.mp3');
+    var fartSound = new Audio('audio/fart.mp3');
+
 // Onclick function
 function noobClick() {
-
-    var ben = new Audio('audio/ben.mp3')
 
     // Random colour change interval
     let random16 = Math.floor(Math.random() * 5);
@@ -38,11 +43,13 @@ function noobClick() {
     // Random cursed interval
     let cursedRand = Math.floor(Math.random() * 25 );
 
+    // 
     clicks += pokeStrength;
     noobObj.textContent = "Noob has been clicked: " + Math.ceil(clicks) + " times!";
 
     // Plays "behn" sound
     if (randomBen === 1) {
+        ben.load();
         ben.play();
     }
 
@@ -63,13 +70,26 @@ function noobClick() {
     }
 }
 
+// Main upgrade function
+// Houses all upgrades
 function upgradeFunc(name) {
 
+
+    let max = 1000000;
+
+
     if (name === "poke" && clicks >= pokeCost) {
+
+        if (pokeCostMod < 2){
+            pokeCostMod = pokeCostMod + (pokeCostMod*0.04);
+        } else {
+            pokeCostMod = pokeCostMod + (pokeCostMod*0.02);
+        }
+
         pokeLevel += 1;
         clicks -= pokeCost;
         noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
-        pokeCost = pokeCost * 1.45;
+        pokeCost = pokeCost * pokeCostMod;
         pokeStrength = pokeStrength * 1.5;
         
         pokeLvl.textContent = "Poke Stick -- Lvl: " + pokeLevel;
@@ -77,25 +97,41 @@ function upgradeFunc(name) {
     }
 
     if (name === "squeak" && clicks >= squeakCost ) {
+
+        if (squeakCostMod < 2){
+            squeakCostMod = squeakCostMod + (squeakCostMod*0.04);
+        } else {
+            squeakCostMod = squeakCostMod + (squeakCostMod*0.02);
+        }
+        fartSound.play();
         squeakLevel += 1;
         clicks -= squeakCost;
         noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
-        squeakCost = squeakCost * 1.33;
+        squeakCost = squeakCost * squeakCostMod;
         squeaker = squeaker * 1.5;
         window.setInterval(function(){
 
-            clicks = clicks += squeaker;
-            noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
-
+            if (clicks < max){
+                clicks = clicks += squeaker;
+                noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
+            } else {
+                clicks = max;
+                noobObj.textContent = `Noob has been clicked: ${Math.ceil(clicks)} times! `;
+            }
         }, 100);
 
         squeakLvl.textContent = "Squeaker -- Lvl: " + squeakLevel;
         squeakDisplay.textContent = "Upgrade \r\n (" + Math.ceil(squeakCost) + " clicks)";
     }
 
+    if (name === "robux") {
+
+        document.write("Test");
+
+    }
 
 
-var cancel = setInterval(incrementSeconds, 1000);
+var cancel = setInterval(1, 1000);
 }
 
 // comment
